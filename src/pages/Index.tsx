@@ -38,7 +38,7 @@ interface Comment {
 const mockTasks: Task[] = [
   {
     id: '1',
-    title: 'Создать API для аутентификации',
+    title: 'INDEX-1 Название задачи',
     description: 'Необходимо разработать RESTful API для регистрации и авторизации пользователей с использованием JWT токенов.',
     status: 'open',
     assignee: { name: 'Анна Смирнова', avatar: '', initials: 'АС' },
@@ -52,7 +52,7 @@ const mockTasks: Task[] = [
   },
   {
     id: '2',
-    title: 'Оптимизация загрузки страниц',
+    title: 'INDEX-2 Название задачи',
     description: 'Провести анализ производительности и оптимизировать время загрузки главной страницы.',
     status: 'progress',
     assignee: { name: 'Дмитрий Козлов', avatar: '', initials: 'ДК' },
@@ -64,7 +64,7 @@ const mockTasks: Task[] = [
   },
   {
     id: '3',
-    title: 'Настройка CI/CD pipeline',
+    title: 'INDEX-3 Название задачи',
     description: 'Автоматизировать процесс сборки и деплоя приложения через GitHub Actions.',
     status: 'testing',
     assignee: { name: 'Елена Васильева', avatar: '', initials: 'ЕВ' },
@@ -78,7 +78,7 @@ const mockTasks: Task[] = [
   },
   {
     id: '4',
-    title: 'Исправить баг с уведомлениями',
+    title: 'INDEX-4 Название задачи',
     description: 'Push-уведомления не приходят на iOS устройства в production среде.',
     status: 'review',
     assignee: { name: 'Михаил Петров', avatar: '', initials: 'МП' },
@@ -90,7 +90,7 @@ const mockTasks: Task[] = [
   },
   {
     id: '5',
-    title: 'Рефакторинг компонентов UI',
+    title: 'INDEX-5 Название задачи',
     description: 'Обновить устаревшие компоненты и привести к единому стилю.',
     status: 'done',
     assignee: { name: 'Ольга Николаева', avatar: '', initials: 'ОН' },
@@ -105,11 +105,46 @@ const mockTasks: Task[] = [
 ];
 
 const statusConfig = {
-  open: { label: 'Открыта', color: 'bg-gray-100 text-gray-700', icon: 'Circle' },
-  review: { label: 'Оценивается', color: 'bg-yellow-100 text-yellow-700', icon: 'Clock' },
-  progress: { label: 'В работе', color: 'bg-blue-100 text-blue-700', icon: 'Play' },
-  testing: { label: 'Тестируется', color: 'bg-purple-100 text-purple-700', icon: 'TestTube' },
-  done: { label: 'Завершено', color: 'bg-green-100 text-green-700', icon: 'CheckCircle' }
+  open: { 
+    label: 'Открыт', 
+    color: 'bg-gray-100 text-gray-700', 
+    icon: 'Circle', 
+    bgColor: 'bg-white', 
+    headerColor: 'bg-gray-100',
+    textColor: 'text-gray-700'
+  },
+  review: { 
+    label: 'В оценке', 
+    color: 'bg-yellow-100 text-yellow-700', 
+    icon: 'Clock', 
+    bgColor: 'bg-yellow-50', 
+    headerColor: 'bg-yellow-400',
+    textColor: 'text-white'
+  },
+  progress: { 
+    label: 'В работе', 
+    color: 'bg-red-100 text-red-700', 
+    icon: 'Play', 
+    bgColor: 'bg-red-50', 
+    headerColor: 'bg-red-500',
+    textColor: 'text-white'
+  },
+  testing: { 
+    label: 'Тестируется', 
+    color: 'bg-orange-100 text-orange-700', 
+    icon: 'TestTube', 
+    bgColor: 'bg-orange-50', 
+    headerColor: 'bg-orange-400',
+    textColor: 'text-white'
+  },
+  done: { 
+    label: 'Завершено', 
+    color: 'bg-green-100 text-green-700', 
+    icon: 'CheckCircle', 
+    bgColor: 'bg-green-50', 
+    headerColor: 'bg-green-500',
+    textColor: 'text-white'
+  }
 };
 
 const priorityConfig = {
@@ -193,73 +228,56 @@ function Index() {
         <div className="mx-auto max-w-7xl px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <h1 className="text-2xl font-bold text-primary">Projo</h1>
-              <Select defaultValue="backend-api">
-                <SelectTrigger className="w-48">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="backend-api">Backend API</SelectItem>
-                  <SelectItem value="frontend">Frontend</SelectItem>
-                  <SelectItem value="mobile-app">Mobile App</SelectItem>
-                  <SelectItem value="devops">DevOps</SelectItem>
-                </SelectContent>
-              </Select>
+              <Icon name="Menu" size={20} className="text-foreground" />
+              <h1 className="text-xl font-bold text-foreground">Proja</h1>
             </div>
             
             <div className="flex items-center space-x-4">
-              <Button>
-                <Icon name="Plus" size={16} className="mr-2" />
-                Создать задачу
-              </Button>
+              <Icon name="Bell" size={20} className="text-muted-foreground" />
+              <span className="text-sm text-muted-foreground">Имя пользователя</span>
               <Avatar>
-                <AvatarFallback>АП</AvatarFallback>
+                <AvatarFallback>ИП</AvatarFallback>
               </Avatar>
-            </div>
-          </div>
-          
-          <div className="mt-4 flex items-center space-x-6 text-sm text-muted-foreground">
-            <div className="flex items-center space-x-2">
-              <Icon name="User" size={16} />
-              <span>Руководитель: Анна Смирнова</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Icon name="Calendar" size={16} />
-              <span>Создан: 15 марта 2024</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Icon name="Users" size={16} />
-              <span>Участников: 5</span>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Kanban Board */}
-      <main className="mx-auto max-w-7xl px-6 py-8">
-        <div className="grid grid-cols-5 gap-6">
+      {/* Project Header */}
+      <div className="mx-auto max-w-7xl px-6 py-6">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-foreground">Название проекта</h2>
+          <Button variant="outline" size="sm">
+            Сменить проект
+          </Button>
+        </div>
+        
+        {/* Navigation Tabs */}
+        <div className="flex space-x-6 border-b mb-6">
+          <button className="pb-2 border-b-2 border-primary text-primary font-medium">Kanban</button>
+          <button className="pb-2 text-muted-foreground hover:text-foreground">Диаграмма ганта</button>
+          <button className="pb-2 text-muted-foreground hover:text-foreground">Статистика</button>
+        </div>
+
+        {/* Kanban Board */}
+        <div className="grid grid-cols-5 gap-1">
           {Object.entries(statusConfig).map(([status, config]) => (
             <div
               key={status}
-              className="flex flex-col"
+              className={`flex flex-col ${config.bgColor} min-h-[600px] rounded-lg overflow-hidden shadow-sm`}
               onDragOver={handleDragOver}
               onDrop={() => handleDrop(status as Task['status'])}
             >
-              <div className="mb-4 flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Icon name={config.icon as any} size={16} className="text-muted-foreground" />
-                  <h3 className="font-semibold text-foreground">{config.label}</h3>
-                  <Badge variant="secondary" className="text-xs">
-                    {getTasksByStatus(status as Task['status']).length}
-                  </Badge>
-                </div>
+              <div className={`${config.headerColor} ${config.textColor} px-4 py-3 flex items-center justify-between font-medium`}>
+                <span>{config.label}</span>
+                <Icon name="Plus" size={16} className="cursor-pointer hover:bg-white/20 rounded p-1" />
               </div>
 
-              <div className="space-y-3 flex-1">
+              <div className="p-4 space-y-3 flex-1">
                 {getTasksByStatus(status as Task['status']).map((task) => (
                   <Card
                     key={task.id}
-                    className="cursor-pointer transition-all duration-200 hover:shadow-md hover-scale group"
+                    className="cursor-pointer transition-all duration-200 hover:shadow-md hover-scale group bg-white border"
                     draggable
                     onDragStart={() => handleDragStart(task)}
                     onDoubleClick={() => openTaskModal(task)}
@@ -272,42 +290,48 @@ function Index() {
                         <Icon name="GripVertical" size={14} className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity drag-handle" />
                       </div>
                       
-                      <p className="text-xs text-muted-foreground mb-3 line-clamp-2">
-                        {task.description}
-                      </p>
-                      
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
                         <div className="flex items-center space-x-2">
-                          <Avatar className="h-6 w-6">
-                            <AvatarFallback className="text-xs">{task.assignee.initials}</AvatarFallback>
-                          </Avatar>
                           <Badge 
                             variant="secondary" 
                             className={`text-xs ${priorityConfig[task.priority].color}`}
                           >
                             {priorityConfig[task.priority].label}
                           </Badge>
+                          <span>Исполнитель</span>
                         </div>
+                        <span>1ч</span>
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
+                          <Avatar className="h-6 w-6">
+                            <AvatarFallback className="text-xs">{task.assignee.initials}</AvatarFallback>
+                          </Avatar>
                           {task.comments.length > 0 && (
                             <div className="flex items-center space-x-1 text-xs text-muted-foreground">
                               <Icon name="MessageCircle" size={12} />
                               <span>{task.comments.length}</span>
                             </div>
                           )}
-                          <span className="text-xs text-muted-foreground">
-                            {task.timeInStatus}
-                          </span>
                         </div>
+                        <span className="text-xs text-muted-foreground">
+                          2+
+                        </span>
                       </div>
                     </CardContent>
                   </Card>
                 ))}
+                
+                {/* Add Task Button */}
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center text-gray-400 hover:border-gray-400 cursor-pointer transition-colors">
+                  <Icon name="Plus" size={24} className="mx-auto mb-2" />
+                </div>
               </div>
             </div>
           ))}
         </div>
-      </main>
+      </div>
 
       {/* Task Modal */}
       <Dialog open={isTaskModalOpen} onOpenChange={setIsTaskModalOpen}>
